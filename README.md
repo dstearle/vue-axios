@@ -1,12 +1,13 @@
 <strong>What is this project?:</strong>
 
 - The vue-axios project is a simple application showcasing axios calls in vue
+- Also showcases validation using vuelidate (https://vuelidate.netlify.com/)
 
 <br>
 
 <strong>Setting up a cloned repo of this project:</strong>
 
-- Requires: firebase
+- Requires: firebase, vuelidate
 
 ## Build Setup
 
