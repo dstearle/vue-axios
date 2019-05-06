@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
+import Vuelidate from 'vuelidate'
 
 import router from './router'
 import store from './store'
+
+Vue.use(Vuelidate)
 
 // Sets up the axios url to be used globally
 axios.defaults.baseURL = 'https://vue-axios-cc3ce.firebaseio.com'
