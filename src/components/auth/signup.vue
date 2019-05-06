@@ -113,7 +113,7 @@ import axios from 'axios';
         // First argument is where you put the link to the database
         // Second argument is the actual data to be sent to the database
         // The .then and .catch are known as "promises" which can be chained together with an axios call
-        axios.post('https://vue-axios-cc3ce.firebaseio.com/users.json', formData)
+        axios.post('/users.json', formData)
           // Will also show the data submitted in the form if axios call is successful. "Status: 200" in the data will also confirm.
           .then(res => console.log(res))
           .catch(error => console.log(error));
