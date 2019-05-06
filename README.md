@@ -1,6 +1,12 @@
-# vue-update
+<strong>What is this project?:</strong>
 
-> Vue Auth & more
+- The vue-axios project is a simple application showcasing axios calls in vue
+
+<br>
+
+<strong>Setting up a cloned repo of this project:</strong>
+
+- Requires: firebase
 
 ## Build Setup
 
