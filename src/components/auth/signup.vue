@@ -69,8 +69,11 @@
 </template>
 
 <script>
+// Global import of axios
+// import axios from 'axios';
 
-import axios from 'axios';
+// Instance import of axios
+import axios from '../../axios-auth'
 
   export default {
     data () {
