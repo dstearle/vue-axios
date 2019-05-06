@@ -22,7 +22,7 @@ export default {
 
     // Axios call the gets the data from the database
     // The .then and .catch are known as "promises" which can be chained together with an axios call
-    axios.get('https://vue-axios-cc3ce.firebaseio.com/users.json')
+    axios.get('/users.json')
       // Will also show the data submitted in the form if axios call is successful. "Status: 200" in the data will also confirm.
       .then(res => {
 
