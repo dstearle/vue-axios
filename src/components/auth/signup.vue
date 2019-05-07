@@ -60,19 +60,27 @@
             <div
                     class="input"
                     v-for="(hobbyInput, index) in hobbyInputs"
+                    :class="{invalid: $v.hobbyInputs.$each[index].$error}"
                     :key="hobbyInput.id">
               <label :for="hobbyInput.id">Hobby #{{ index }}</label>
               <input
                       type="text"
                       :id="hobbyInput.id"
+                      @blur="$v.hobbyInputs.$each[index].value.$touch()"
                       v-model="hobbyInput.value">
               <button @click="onDeleteHobby(hobbyInput.id)" type="button">X</button>
             </div>
+            <p v-if="!$v.hobbyInputs.minLen">You have to specify at least {{$v.hobbyInputs.$params.minLen.min}} hobbies</p>
+            <p v-if="!$v.hobbyInputs.required">Please add hobbies</p>
           </div>
         </div>
 
-        <div class="input inline">
-          <input type="checkbox" id="terms" v-model="terms">
+        <div class="input inline" :class="{invalid: $v.terms.$invalid}">
+          <input 
+            type="checkbox" 
+            id="terms" 
+            @change="$v.terms.$touch()" 
+            v-model="terms">
           <label for="terms">Accept Terms of Use</label>
         </div>
 
@@ -93,7 +101,7 @@
 import axios from '../../axios-auth'
 
 // Vuelidate validations import
-import {required, email, numeric, minValue, minLength, sameAs} from 'vuelidate/lib/validators'
+import {required, email, numeric, minValue, minLength, sameAs, requiredUnless} from 'vuelidate/lib/validators'
 
   export default {
     data () {
@@ -125,6 +133,20 @@ import {required, email, numeric, minValue, minLength, sameAs} from 'vuelidate/l
       },
       confirmPassword: {
         sameAs: sameAs('password')
+      },
+      terms: {
+        required: requiredUnless(vm => {
+          return vm.country === 'india'
+        })
+      },
+      hobbyInputs: {
+        minLen: minLength(2),
+        $each: {
+          value: {
+            required,
+            minLen: minLength(5)
+          }
+        }
       }
     },
     methods: {
