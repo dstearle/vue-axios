@@ -120,7 +120,16 @@ import {required, email, numeric, minValue, minLength, sameAs, requiredUnless} f
 
       email: {
         email,
-        required
+        required,
+        // Checks to see if email is already in the database
+        unique: val => {
+          if(val === '') return true
+          return axios.get('/users.json?orderBy="email"&equalTo="' + val + '"')
+            .then(res => {
+              // console.log(res)
+              return Object.keys(res.data).length === 0
+            })
+        }
       },
       age: {
         required,
